@@ -1,0 +1,111 @@
+﻿<div id="app">
+
+
+    <button class="btn btn-primary" v-on:click="showNewBugModal">Add New Bug ... </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(bug,index) in bugs">
+                <td>{{index+1}}</td>
+                <td>{{bug.name}}</td>
+                <td>{{bug.description}}</td>
+                <td>
+                    <button class="btn btn-danger" v-on:click="ShowDeleteBugModal(bug,index)">Remove</button>
+                    <button class="btn btn-warning" v-on:click="showeditmodal(bug,index)">Edit</button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="modal fade" id="AddBugModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Bug</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input v-model="name" type="text" class="form-control" style="width:100%" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input v-model="description" type="text" class="form-control" style="width:100%" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" v-on:click="addBugs" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="EditBugModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Bug</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input v-model="name" type="text" class="form-control" style="width:100%" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input v-model="description" type="text" class="form-control" style="width:100%" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" v-on:click="editBugs" class="btn btn-primary">Save Edited Feilds</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DeleteBugModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Bug</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-info">Are You Sure Want To Delete This Record ?</p>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input v-model="name" disabled="disabled" type="text" class="form-control" style="width:100%" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input v-model="description" disabled="disabled" type="text" class="form-control" style="width:100%" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" v-on:click="removeBug(bug,index)" class="btn btn-primary">Yes Delete It</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

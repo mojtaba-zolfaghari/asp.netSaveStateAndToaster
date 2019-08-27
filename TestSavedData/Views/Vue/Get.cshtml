@@ -1,0 +1,68 @@
+﻿<div id="app">
+    My name is <input v-model="name">
+    and I am <input v-model="age"> years old.
+    <p />
+    <button v-on:click="loadData">Save</button>
+    <button v-on:click="clearData">Clear Storage</button>
+</div>
+
+
+
+
+
+
+
+@section scripts{
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                age: 0
+            },
+            mounted() {
+                if (localStorage.name) this.name = localStorage.name;
+                if (localStorage.age) this.age = localStorage.age;
+            },
+            methods: {
+                loadData() {
+                    localStorage.name = this.name;
+                    localStorage.age = this.age;
+                    console.log('now pretend I did more stuff...');
+                    toastr.success("Saved On Local Storage");
+                },
+                clearData() {
+                    localStorage.clear();
+                    toastr.error("Deleted from Local Storage");
+
+                    //https://codeseven.github.io/toastr/demo.html
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+
+
+
+
+
+                    }
+                }
+            }
+        );
+            
+    </script>
+}
+
